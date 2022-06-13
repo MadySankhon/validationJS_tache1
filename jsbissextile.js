@@ -1,4 +1,5 @@
 let dateSaisie = " ", dateConvertie ;
+let para = document.getElementById("sortie");
     function SaissirDate() {
         dateSaisie = prompt("Entrez une année sous forme YYYY:");
         dateConvertie = Number(dateSaisie);
@@ -6,15 +7,22 @@ let dateSaisie = " ", dateConvertie ;
 (function repeter() {
     SaissirDate();
     if ((dateSaisie.length == 4) && (dateConvertie)) {
-        if(dateConvertie % 4 === 0){
-            alert("Année bissectile")
-        }
-        else{
-            alert("Année non bissectile")  
-        }
+        (function estBissextille(){
+            if(dateConvertie % 4 === 0){
+                para.innerHTML = `L'année ${dateSaisie} est une année bissextile`;
+                para.className = "text-success" ;
+                // alert("Année bissextile")
+            }
+            else{
+                // alert("Année non bissextile")  
+                para.innerHTML = `L'année ${dateSaisie} n'est pas une année bissextile`;
+                para.className = "text-danger";
+            }
+        })();
+        
     }
     else{
-        alert("veuillez saisire la date sur le format YYYY \nExemple: 1665");
+        alert(`${dateSaisie} n'est pas une année. \nVeuillez saisire la date sur le format YYYY. \nExemple: 1665`);
         repeter();
     }
 })();
